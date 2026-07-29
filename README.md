@@ -1,9 +1,9 @@
-# Pomopt
+# PomoPT
 
 A pomodoro timer that spends your breaks on your body.
 
 Built around one problem: hyperfocus. A timer you can dismiss with a click is a
-timer you will dismiss. So when a break starts, Pomopt takes over every screen
+timer you will dismiss. So when a break starts, PomoPT takes over every screen
 you own, tells you exactly which exercise to do, counts you through it, and does
 not give the screen back until the break is over.
 
@@ -245,5 +245,5 @@ physical therapist — the Exercises tab lists all of it in one place, filtered 
 what the current profile can reach — and stop anything that hurts.
 
 The loaded lifts assume you already know roughly what you are doing with a
-dumbbell. Pomopt will not tell you your form is wrong; it only tells you what to
+dumbbell. PomoPT will not tell you your form is wrong; it only tells you what to
 attempt.
