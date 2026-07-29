@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'none'; style-src 'self'; script-src 'self'; img-src 'self' data:;" />
+  <title>Pomopt — Break</title>
+  <link rel="stylesheet" href="break.css" />
+</head>
+<body>
+  <div id="root" class="overlay">
+
+    <header class="bar">
+      <div class="bar-left">
+        <span id="kind" class="kind">Break</span>
+        <span id="dots" class="dots" aria-label="exercise progress"></span>
+      </div>
+      <div class="bar-right">
+        <span id="paused" class="paused-flag" hidden>Paused</span>
+        <span id="breakClock" class="break-clock">0:00</span>
+        <span class="break-clock-label">left</span>
+      </div>
+    </header>
+
+    <!-- Transition / side-switch / free-time card -->
+    <main id="interstitial" class="stage interstitial" hidden>
+      <p id="interLabel" class="inter-label">Next up</p>
+      <h1 id="interTitle" class="inter-title">—</h1>
+      <p id="interDose" class="inter-dose"></p>
+      <div id="interFigure" class="inter-figure"></div>
+      <div id="interCount" class="inter-count">0</div>
+    </main>
+
+    <!-- Active exercise card -->
+    <main id="exercise" class="stage exercise" hidden>
+      <div class="ex-head">
+        <div class="ex-tags">
+          <span id="focusTag" class="tag">—</span>
+          <span id="sideTag" class="tag tag-side" hidden>Left</span>
+          <span id="positionTag" class="tag tag-muted">standing</span>
+        </div>
+        <h1 id="exName" class="ex-name">—</h1>
+        <p id="exDose" class="ex-dose">—</p>
+      </div>
+
+      <div class="ex-timer">
+        <div class="track"><div id="segFill" class="fill"></div></div>
+        <div id="segClock" class="seg-clock">0:00</div>
+      </div>
+
+      <div class="ex-body">
+        <ol id="cues" class="cues"></ol>
+        <div id="figureSlot" class="fig-slot"></div>
+        <aside class="ex-aside">
+          <div class="why">
+            <h2>Why this one</h2>
+            <p id="exWhy">—</p>
+          </div>
+          <div id="cautionBox" class="caution" hidden>
+            <h2>Careful</h2>
+            <p id="exCaution">—</p>
+          </div>
+        </aside>
+      </div>
+    </main>
+
+    <footer class="controls">
+      <div class="controls-left">
+        <button id="btnPrev" class="btn btn-ghost" type="button">&larr; Back</button>
+        <button id="btnNext" class="btn btn-ghost" type="button">Skip ahead &rarr;</button>
+      </div>
+      <div class="controls-right">
+        <!-- Deliberately a plain click, not a hold: when a break lands in the
+             middle of a meeting you need it gone immediately, and you still owe
+             the remainder afterwards. -->
+        <button id="btnMeeting" class="btn btn-meeting" type="button">I'm in a meeting</button>
+        <button id="btnPause" class="btn btn-ghost" type="button">Pause</button>
+        <button id="btnSnooze" class="btn btn-hold" type="button" data-hold>
+          <span class="hold-fill"></span>
+          <span class="hold-label">Hold to snooze 5 min</span>
+        </button>
+        <button id="btnEnd" class="btn btn-hold btn-hold-danger" type="button" data-hold>
+          <span class="hold-fill"></span>
+          <span class="hold-label">Hold to end break</span>
+        </button>
+      </div>
+    </footer>
+
+  </div>
+  <script src="figures.js"></script>
+  <script src="figures-poses.js"></script>
+  <script src="break.js"></script>
+</body>
+</html>

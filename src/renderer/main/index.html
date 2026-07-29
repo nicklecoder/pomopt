@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'none'; style-src 'self'; script-src 'self'; img-src 'self' data:;" />
+  <title>Pomopt</title>
+  <link rel="stylesheet" href="app.css" />
+</head>
+<body>
+  <div class="titlebar"></div>
+
+  <nav class="tabs" role="tablist">
+    <button class="tab is-active" data-tab="timer" role="tab" type="button">Timer</button>
+    <button class="tab" data-tab="today" role="tab" type="button">Today</button>
+    <button class="tab" data-tab="library" role="tab" type="button">Exercises</button>
+    <button class="tab" data-tab="settings" role="tab" type="button">Settings</button>
+  </nav>
+
+  <!-- ------------------------------------------------------------ TIMER -->
+  <section id="panel-timer" class="panel is-active">
+    <div class="where">
+      <span class="where-label">Where you are</span>
+      <div id="profileChipsTimer" class="chips"></div>
+    </div>
+
+    <div id="holdBanner" class="hold-banner" hidden>
+      <div class="hold-text">
+        <strong>Breaks on hold</strong>
+        <em id="holdDetail">Nothing will take your screen.</em>
+      </div>
+      <button id="btnResumeHold" class="btn btn-small btn-primary" type="button">Resume</button>
+    </div>
+
+    <div class="hero">
+      <p id="modeLabel" class="mode-label">Ready</p>
+      <div id="clock" class="clock">25:00</div>
+      <div class="ring">
+        <div id="ringFill" class="ring-fill"></div>
+      </div>
+      <div id="cycle" class="cycle" aria-label="pomodoros until long break"></div>
+      <p id="cycleNote" class="cycle-note">Long break after 4 focus blocks</p>
+    </div>
+
+    <div class="actions">
+      <button id="btnPrimary" class="btn btn-primary" type="button">Start focus</button>
+      <div class="actions-row">
+        <button id="btnSkip" class="btn" type="button">Skip phase</button>
+        <button id="btnStop" class="btn" type="button">Stop</button>
+      </div>
+      <div class="actions-row">
+        <button id="btnAdjMinus" class="btn btn-small" type="button">&minus;5 min</button>
+        <button id="btnAdjPlus" class="btn btn-small" type="button">+5 min</button>
+      </div>
+      <button id="btnMeeting" class="btn btn-meeting" type="button">I'm in a meeting — hold breaks</button>
+    </div>
+
+    <div class="quick">
+      <p class="quick-label">Need a break right now?</p>
+      <div class="actions-row">
+        <button id="btnShort" class="btn btn-small" type="button">Short break</button>
+        <button id="btnLong" class="btn btn-small" type="button">Long break</button>
+      </div>
+      <p id="poolNote" class="hint" style="margin-top:12px"></p>
+    </div>
+  </section>
+
+  <!-- ------------------------------------------------------------ TODAY -->
+  <section id="panel-today" class="panel">
+    <div class="stat-row">
+      <div class="stat"><div id="statPomos" class="stat-value">0</div><div class="stat-label">focus blocks</div></div>
+      <div class="stat"><div id="statBreaks" class="stat-value">0</div><div class="stat-label">breaks taken</div></div>
+      <div class="stat"><div id="statReps" class="stat-value">0</div><div class="stat-label">sets done</div></div>
+    </div>
+
+    <h2 class="section-head">Last 7 days</h2>
+    <div id="sparkline" class="sparkline"></div>
+
+    <h2 class="section-head">Today's exercises</h2>
+    <ul id="todayList" class="log-list"></ul>
+  </section>
+
+  <!-- ---------------------------------------------------------- LIBRARY -->
+  <section id="panel-library" class="panel">
+    <label class="toggle" style="margin-bottom:14px">
+      <input id="libOnlyAvailable" type="checkbox" checked />
+      <span><strong>Only what I can do right now</strong><em id="libAvailNote">Filtered by the active profile.</em></span>
+    </label>
+    <div id="library" class="library"></div>
+  </section>
+
+  <!-- --------------------------------------------------------- SETTINGS -->
+  <section id="panel-settings" class="panel">
+    <h2 class="section-head">Where you are</h2>
+    <p class="hint">Each profile is its own set of equipment, packs and effort ceiling. Switch profiles to switch all of it at once — also available from the menu bar.</p>
+    <div id="profileChips" class="chips"></div>
+    <div class="actions-row" style="margin-top:10px">
+      <button id="btnAddProfile" class="btn btn-small" type="button">Duplicate as new</button>
+      <button id="btnRenameProfile" class="btn btn-small" type="button">Rename</button>
+      <button id="btnDeleteProfile" class="btn btn-small" type="button">Delete</button>
+    </div>
+
+    <h2 class="section-head">Available here</h2>
+    <label class="field">
+      <span>Effort ceiling</span>
+      <select id="setIntensity" class="select">
+        <option value="low">Low</option>
+        <option value="moderate">Moderate</option>
+        <option value="high">High</option>
+      </select>
+    </label>
+    <p class="hint" id="intensityNote"></p>
+    <label class="field">
+      <span>Heaviest dumbbell</span>
+      <input id="setDumbbell" type="number" min="0" max="200" step="2.5" /><em>lb</em>
+    </label>
+    <p class="hint">Exercises that need more weight than this are never scheduled. Set 0 if you have no weights here.</p>
+    <div id="equipment"></div>
+
+    <h2 class="section-head">Exercise packs</h2>
+    <p class="hint">Turn a pack off entirely, or keep it on and pick which kinds of work it can pull from. An <strong>anchor</strong> pack is guaranteed a slot in every break.</p>
+    <div id="packs" class="packs"></div>
+
+    <h2 class="section-head">Intervals</h2>
+    <label class="field">
+      <span>Focus block</span>
+      <input id="setWork" type="number" min="1" max="120" step="1" /><em>min</em>
+    </label>
+    <label class="field">
+      <span>Short break</span>
+      <input id="setShort" type="number" min="1" max="60" step="1" /><em>min</em>
+    </label>
+    <label class="field">
+      <span>Long break</span>
+      <input id="setLong" type="number" min="1" max="90" step="1" /><em>min</em>
+    </label>
+    <label class="field">
+      <span>Long break every</span>
+      <input id="setEvery" type="number" min="2" max="12" step="1" /><em>blocks</em>
+    </label>
+
+    <h2 class="section-head">Behaviour</h2>
+    <label class="toggle">
+      <input id="setAutoBreak" type="checkbox" />
+      <span><strong>Start breaks automatically</strong><em>The whole point. Leave this on.</em></span>
+    </label>
+    <label class="toggle">
+      <input id="setAutoWork" type="checkbox" />
+      <span><strong>Start the next focus block automatically</strong><em>Off means you choose when to re-enter focus.</em></span>
+    </label>
+    <label class="toggle">
+      <input id="setSound" type="checkbox" />
+      <span><strong>Sound cues</strong><em>Quiet tones at phase and exercise changes.</em></span>
+    </label>
+    <label class="field">
+      <span>Warn before a break</span>
+      <input id="setWarn" type="number" min="0" max="120" step="5" /><em>sec</em>
+    </label>
+    <p class="hint">A small panel appears in the corner first, so a break can never ambush a screen share or a meeting you forgot to hold for. 0 turns it off.</p>
+    <label class="field">
+      <span>Nudge me while on hold</span>
+      <input id="setHoldReminder" type="number" min="0" max="180" step="5" /><em>min</em>
+    </label>
+    <p class="hint">So a meeting hold cannot quietly swallow the rest of the day. 0 turns it off.</p>
+    <label class="field">
+      <span>Hold-to-skip duration</span>
+      <input id="setHold" type="number" min="0" max="10" step="0.5" /><em>sec</em>
+    </label>
+
+    <h2 class="section-head">About</h2>
+    <p class="hint">
+      Pomopt prescribes general exercises. It is not medical advice and does not
+      know your diagnosis or your training history. Run the knee program past your
+      physical therapist — the Exercises tab lists all of it in one place — and
+      stop anything that causes pain.
+    </p>
+  </section>
+
+  <!-- ------------------------------------------------------------ PROMPT -->
+  <div id="prompt" class="prompt-backdrop" hidden>
+    <div class="prompt">
+      <label class="prompt-label" id="promptLabel">Name</label>
+      <input id="promptInput" class="prompt-input" type="text" />
+      <div class="actions-row">
+        <button id="promptCancel" class="btn btn-small" type="button">Cancel</button>
+        <button id="promptOk" class="btn btn-small btn-primary" type="button">OK</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

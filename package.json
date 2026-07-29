@@ -1,0 +1,28 @@
+{
+  "name": "pomopt",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A pomodoro timer that prescribes knee physical therapy during breaks.",
+  "main": "src/main/index.js",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder --mac"
+  },
+  "build": {
+    "appId": "com.adamnickle.pomopt",
+    "productName": "Pomopt",
+    "files": [
+      "src/**/*",
+      "package.json"
+    ],
+    "mac": {
+      "category": "public.app-category.healthcare-fitness",
+      "target": [
+        "dmg"
+      ]
+    }
+  },
+  "devDependencies": {
+    "electron": "^43.2.0"
+  }
+}

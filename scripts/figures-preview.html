@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Pomopt — figure contact sheet</title>
+  <link rel="stylesheet" href="../src/renderer/break/break.css" />
+  <style>
+    body { padding: 24px; overflow: auto; height: auto; }
+    .sheet { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .cell { border: 1px solid var(--line); border-radius: 14px; padding: 14px; background: #0d1219; }
+    .cell h3 { margin: 0 0 10px; font-size: 14px; font-weight: 600; color: var(--accent); }
+    .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .fig { max-width: none; }
+    .fig-caption { min-height: 3.4em; font-size: 11px; }
+  </style>
+</head>
+<body>
+  <div id="sheet" class="sheet"></div>
+  <script src="../src/renderer/break/figures.js"></script>
+  <script src="../src/renderer/break/figures-poses.js"></script>
+  <script>
+    const sheet = document.getElementById('sheet')
+    // ?only=a,b,c renders just those exercises, for reviewing a single figure.
+    const only = new URLSearchParams(location.search).get('only')
+    const wanted = only ? only.split(',') : window.PomoptFigures.ids()
+    for (const id of wanted) {
+      const cell = document.createElement('div')
+      cell.className = 'cell'
+      const h = document.createElement('h3')
+      h.textContent = id
+      // Multi-stage flows carry more than two captions; show one column each.
+      const stages = Math.max(2, window.PomoptFigures.stageCount(id))
+      const pair = document.createElement('div')
+      pair.className = 'pair'
+      pair.style.gridTemplateColumns = `repeat(${stages}, 1fr)`
+      // Isolate failures: one broken figure must not blank the whole sheet.
+      for (let s = 0; s < stages; s++) {
+        try {
+          pair.append(window.PomoptFigures.createStatic(id, s / (stages - 1)))
+        } catch (err) {
+          const boom = document.createElement('div')
+          boom.style.cssText = 'color:#ff6b6b;font-size:11px;padding:12px'
+          boom.textContent = 'THREW: ' + err.message
+          pair.append(boom)
+        }
+      }
+      cell.append(h, pair)
+      sheet.append(cell)
+    }
+    document.title = 'ready'
+  </script>
+</body>
+</html>

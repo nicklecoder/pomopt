@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'none'; style-src 'self'; script-src 'self'; img-src 'self' data:;" />
+  <title>Pomopt — break incoming</title>
+  <link rel="stylesheet" href="warning.css" />
+</head>
+<body>
+  <div class="card">
+    <div class="head">
+      <span id="kind" class="kind">Short break</span>
+      <span id="count" class="count">20</span>
+    </div>
+
+    <p id="lead" class="lead">Taking the screen in a moment.</p>
+
+    <div class="row">
+      <button id="btnHold" class="btn btn-hold" type="button">I'm in a meeting</button>
+      <button id="btnSnooze" class="btn" type="button">5 min</button>
+      <button id="btnNow" class="btn btn-go" type="button">Start now</button>
+    </div>
+
+    <p class="hint">Hold also works from the menu bar, or <b>⌃⌥M</b> anywhere.</p>
+  </div>
+  <script src="warning.js"></script>
+</body>
+</html>
