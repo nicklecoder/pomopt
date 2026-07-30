@@ -7,6 +7,10 @@ timer you will dismiss. So when a break starts, PomoPT takes over every screen
 you own, tells you exactly which exercise to do, counts you through it, and does
 not give the screen back until the break is over.
 
+**PT** is physical therapy, or physical training as the military uses it. Both
+are here: a knee rehab program that always gets a slot, and general strength,
+mobility and cardio filling the rest.
+
 ## Packs, groups, profiles
 
 **94 exercises across 7 packs.** Each pack splits into groups you can toggle

@@ -10,7 +10,7 @@
   },
   "build": {
     "appId": "com.adamnickle.pomopt",
-    "productName": "Pomopt",
+    "productName": "PomoPT",
     "files": [
       "src/**/*",
       "package.json"

@@ -25,7 +25,7 @@ function createTray (actions, context) {
   // Title-only tray item: an empty template image keeps macOS happy while the
   // countdown itself carries the information.
   tray = new Tray(nativeImage.createEmpty())
-  tray.setToolTip('Pomopt')
+  tray.setToolTip('PomoPT')
   tray.on('click', () => tray.popUpContextMenu())
 
   update({ mode: 'idle', running: false, remainingSeconds: 0, completedPomodoros: 0 }, actions, context)
@@ -41,7 +41,7 @@ function update (state, actions, context = { profiles: [], activeProfile: null }
   const label = onHold
     ? '⏸ Hold'
     : state.mode === 'idle'
-      ? `${glyph} Pomopt`
+      ? `${glyph} PomoPT`
       : `${glyph} ${formatClock(state.remainingSeconds)}${state.running ? '' : ' ⏸'}`
 
   tray.setTitle(label)
@@ -99,7 +99,7 @@ function update (state, actions, context = { profiles: [], activeProfile: null }
       }))
     },
     { type: 'separator' },
-    { label: 'Open Pomopt', click: actions.showMain },
+    { label: 'Open PomoPT', click: actions.showMain },
     { label: 'Quit', click: () => { global.__pomoptQuitting = true; app.quit() } }
   ])
 

@@ -248,7 +248,7 @@ function handleWorkComplete ({ counted = true } = {}) {
     timer.idle()
     notify(
       kind === 'long' ? 'Long break earned' : 'Break time',
-      'Open Pomopt to start your break.'
+      'Open PomoPT to start your break.'
     )
   }
 }

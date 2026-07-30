@@ -23,7 +23,7 @@ function createMainWindow () {
     minWidth: 400,
     minHeight: 560,
     show: false,
-    title: 'Pomopt',
+    title: 'PomoPT',
     backgroundColor: '#0e1116',
     titleBarStyle: 'hiddenInset',
     webPreferences: {
