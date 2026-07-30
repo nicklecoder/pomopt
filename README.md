@@ -86,11 +86,11 @@ function instead:
 - **close-up** for short-foot and calf raises, where the ankle range *is* the
   exercise and a whole standing figure would be too small to read
 
-Several figures deliberately draw the **wrong** shape as the first phase, because
-the failure is the thing worth recognising: the plank and side plank open with
-sagging hips, the suitcase carry with a shoulder tipped away from the weight, and
-the soft-knee stance with the knee bowed backwards. Some angles are exaggerated
-too — a true 5° knee unlock is invisible at diagram scale.
+Several figures deliberately draw the **wrong** shape as the first phase: the
+plank and side plank open with sagging hips, the suitcase carry with a shoulder
+tipped away from the weight, and the soft-knee stance with the knee bowed
+backwards. Some angles are exaggerated too — a true 5° knee unlock is invisible
+at diagram scale.
 
 The sun salutation is a four-stage flow rather than a two-pose loop; the
 keyframe helper interpolates between adjacent shapes and captions each stage.
@@ -237,7 +237,7 @@ treat `scripts/` as the app root, which resolves userData to a directory shared
 with every other Electron app — and with previous runs of these scripts. Each
 run now gets a throwaway directory instead.
 
-## A caveat worth reading
+## Not medical advice
 
 These are general exercises. This is not medical advice and the app knows neither
 your diagnosis nor your training history. Run the knee program past your
