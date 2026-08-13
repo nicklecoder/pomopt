@@ -116,6 +116,18 @@ const PACKS = [
       { id: 'balance', label: 'Balance' },
       { id: 'restorative', label: 'Restorative' }
     ]
+  },
+  {
+    id: 'fullbody',
+    name: 'Full Body Basics',
+    blurb: 'Simple bodyweight strength and yoga-style holds. Squats, push-ups, pull-ups, planks and mobility.',
+    groups: [
+      { id: 'legs', label: 'Legs (squat & lunge holds)' },
+      { id: 'push', label: 'Push (push-ups)' },
+      { id: 'pull', label: 'Pull (pull-ups / hangs)' },
+      { id: 'core', label: 'Core (planks, bird dog)' },
+      { id: 'mobility', label: 'Mobility (cat-cow, child\'s pose)' }
+    ]
   }
 ]
 

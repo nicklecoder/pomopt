@@ -13,7 +13,7 @@ mobility and cardio filling the rest.
 
 ## Packs, groups, profiles
 
-**94 exercises across 7 packs.** Each pack splits into groups you can toggle
+**102 exercises across 8 packs.** Each pack splits into groups you can toggle
 independently — run Upper body but only its pull work, or keep the whole knee
 program on while everything else is off.
 
@@ -26,6 +26,7 @@ program on while everything else is off.
 | Stretching (14) | hips · hamstrings · chest/shoulders · spine · neck/forearms |
 | Cardio (7) | bike · bodyweight |
 | Yoga (10) | flows · balance · restorative |
+| Full Body Basics (8) | legs · push · pull · core · mobility |
 
 **Profiles are the point.** A profile is "what is available to me right now":
 which equipment exists, which packs are running, an effort ceiling, and how
@@ -73,8 +74,8 @@ under load.
 ## Diagrams
 
 Wording is imprecise for movement — "stop just short of straight" is hard to
-picture — so **every one of the 94 exercises has an animated diagram** beside its
-cues. Rather than 94 drawings, there is a single parametric stick figure driven
+picture — so **every one of the 102 exercises has an animated diagram** beside its
+cues. Rather than 102 drawings, there is a single parametric stick figure driven
 by joint angles: each exercise declares a start and an end pose and the figure
 loops between them, pausing at each end so both positions are readable. The
 caption changes with the phase.
@@ -102,7 +103,7 @@ keyframe helper interpolates between adjacent shapes and captions each stage.
 To review them:
 
 ```sh
-npx electron scripts/figure-sheet.js ./shots                    # all 94
+npx electron scripts/figure-sheet.js ./shots                    # all 102
 npx electron scripts/figure-sheet.js ./shots db-rdl,tree-pose   # just these
 npx electron scripts/figure-mount-test.js                       # assert all mount live
 ```
@@ -195,7 +196,7 @@ src/
     defaults.js      default settings and the Home / Office profiles
     exercises/
       index.js       concatenates the packs, plus validate()
-      knee.js  upper.js  core.js  lower.js  stretch.js  cardio.js  yoga.js
+      knee.js  upper.js  core.js  lower.js  stretch.js  cardio.js  yoga.js  fullbody.js
   main/
     index.js         orchestration: phases, IPC, lifecycle
     timer.js         wall-clock phase timer
@@ -216,7 +217,7 @@ scripts/
   _harness.js        isolates userData per run so tests cannot contaminate
   screenshot.js      capture each screen to PNG
   figure-sheet.js    render diagrams at every pose as a contact sheet
-  figure-mount-test.js  assert all 94 figures mount live in the overlay
+  figure-mount-test.js  assert all 102 figures mount live in the overlay
   profile-test.js    assert profiles gate what gets scheduled
   overlay-test.js    assert overlay lifecycle and exercise logging
   hold-test.js       assert the meeting hold and pre-break warning
