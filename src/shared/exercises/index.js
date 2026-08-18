@@ -9,7 +9,8 @@ const EXERCISES = [
   ...require('./lower'),
   ...require('./stretch'),
   ...require('./cardio'),
-  ...require('./yoga')
+  ...require('./yoga'),
+  ...require('./fullbody')
 ]
 
 const BY_ID = new Map(EXERCISES.map((e) => [e.id, e]))

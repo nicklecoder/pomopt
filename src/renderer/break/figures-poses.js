@@ -1197,4 +1197,15 @@
       }
     }
   })
+
+  K.register({
+    'fb-squat-hold': variantOf('chair-pose'),
+    'fb-lunge-hold': variantOf('reverse-lunge'),
+    'fb-pushup': variantOf('pushup'),
+    'fb-pullup': variantOf('pullup'),
+    'fb-plank': variantOf('plank'),
+    'fb-bird-dog': variantOf('bird-dog'),
+    'fb-cat-cow': variantOf('cat-cow'),
+    'fb-childs-pose': variantOf('childs-pose')
+  })
 })()
